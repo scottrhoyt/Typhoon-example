@@ -39,23 +39,23 @@
     return [PFWeatherReport reportWithCity:city date:[NSDate date] currentConditions:currentConditions forecast:forecast];
 }
 
-    - (PFCurrentConditions*)asCurrentCondition
+- (PFCurrentConditions*)asCurrentCondition
+{
+    if (![self.tag isEqualToString:@"current_condition"])
     {
-        if (![self.tag isEqualToString:@"current_condition"])
-        {
-            [NSException raise:NSInvalidArgumentException format:@"Element is not 'current_condition'."];
-        }
-
-        NSString* summary = [[self child:@"weatherDesc"] text];
-        PFTemperature* temp = [PFTemperature temperatureWithFahrenheitString:[[self child:@"temp_F"] text]];
-        NSString* humidity = [[self child:@"humidity"] text];
-        NSString* wind =
-                [NSString stringWithFormat:@"Wind: %@ km %@", [[self child:@"windspeedKmph"] text], [[self child:@"winddir16Point"] text]];
-        NSString* imageUri = [[self child:@"weatherIconUrl"] text];
-
-        return [PFCurrentConditions conditionsWithSummary:summary temperature:temp humidity:humidity wind:wind imageUrl:imageUri];
-
+        [NSException raise:NSInvalidArgumentException format:@"Element is not 'current_condition'."];
     }
+    
+    NSString* summary = [[self child:@"weatherDesc"] text];
+    PFTemperature* temp = [PFTemperature temperatureWithFahrenheitString:[[self child:@"temp_F"] text]];
+    NSString* humidity = [[self child:@"humidity"] text];
+    NSString* wind =
+    [NSString stringWithFormat:@"Wind: %@ km %@", [[self child:@"windspeedKmph"] text], [[self child:@"winddir16Point"] text]];
+    NSString* imageUri = [[self child:@"weatherIconUrl"] text];
+    
+    return [PFCurrentConditions conditionsWithSummary:summary temperature:temp humidity:humidity wind:wind imageUrl:imageUri];
+    
+}
 
 - (PFForecastConditions*)asForecastConditions
 {
