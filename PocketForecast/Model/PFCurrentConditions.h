@@ -12,6 +12,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "PFConditionType.h"
 
 @class PFTemperature;
 
@@ -22,13 +23,13 @@
 @property(nonatomic, strong, readonly) PFTemperature* temperature;
 @property(nonatomic, strong, readonly) NSString* humidity;
 @property(nonatomic, strong, readonly) NSString* wind;
-@property(nonatomic, strong, readonly) NSString* imageUri;
+@property(nonatomic, readonly) PFConditionType conditionType;
 
 + (PFCurrentConditions*) conditionsWithSummary:(NSString*)summary temperature:(PFTemperature*)temperature
-        humidity:(NSString*)humidity wind:(NSString*)wind imageUrl:(NSString*)imageUrl;
+                                      humidity:(NSString*)humidity wind:(NSString*)wind conditionType:(PFConditionType)conditionType;
 
 - (id) initWithSummary:(NSString*)summary temperature:(PFTemperature*)temperature humidity:(NSString*)humidity
-        wind:(NSString*)wind imageUri:(NSString*)imageUri;
+        wind:(NSString*)wind conditionType:(PFConditionType)conditionType;
 
 - (NSString*) longSummary;
 

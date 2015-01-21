@@ -12,6 +12,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "PFConditionType.h"
 
 @class PFTemperature;
 
@@ -22,13 +23,13 @@
 @property(nonatomic, strong, readonly) PFTemperature* low;
 @property(nonatomic, strong, readonly) PFTemperature* high;
 @property(nonatomic, strong, readonly) NSString* summary;
-@property(nonatomic, strong, readonly) NSString* imageUri;
+@property(nonatomic, readonly) PFConditionType conditionType;
 
 + (PFForecastConditions*)conditionsWithDate:(NSDate*)date low:(PFTemperature*)low
-        high:(PFTemperature*)high summary:(NSString*)summary imageUri:(NSString*)imageUri;
+        high:(PFTemperature*)high summary:(NSString*)summary conditionType:(PFConditionType)conditionType;
 
 - (id)initWithDate:(NSDate*)date low:(PFTemperature*)low high:(PFTemperature*)high
-        summary:(NSString*)summary imageUri:(NSString*)imageUri;
+           summary:(NSString*)summary conditionType:(PFConditionType)conditionType;
 
 - (NSString*)longDayOfTheWeek;
 

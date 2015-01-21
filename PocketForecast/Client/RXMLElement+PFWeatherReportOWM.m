@@ -47,9 +47,9 @@
     RXMLElement *windElement = [self child:@"wind"];
     NSString* wind =
     [NSString stringWithFormat:@"Wind: %@ km %@", [[windElement child:@"speed"] attribute:@"value"], [[windElement child:@"direction"] attribute:@"code"]];
-    NSString* imageUri = [self getImageURLStringFromIconCode:[weatherElement attribute:@"icon"]];
+    PFConditionType conditionType = [self getConditionTypeFromCode:[weatherElement attribute:@"number"]];
     
-    return [PFCurrentConditions conditionsWithSummary:summary temperature:temp humidity:humidity wind:wind imageUrl:imageUri];
+    return [PFCurrentConditions conditionsWithSummary:summary temperature:temp humidity:humidity wind:wind conditionType:conditionType];
     
 }
 
@@ -78,41 +78,41 @@
     NSDate* date = [formatter dateFromString:[self attribute:@"day"]];
     RXMLElement *symbol = [self child:@"symbol"];
     NSString *description = [symbol attribute:@"name"];
-    NSString *imageURI = [self getImageURLStringFromIconCode:[symbol attribute:@"var"]];
+    PFConditionType conditionType = [self getConditionTypeFromCode:[symbol attribute:@"number"]];
     RXMLElement *temperature = [self child:@"temperature"];
     PFTemperature *low = [PFTemperature temperatureWithCelsiusString:[temperature attribute:@"min"]];
     PFTemperature *high = [PFTemperature temperatureWithCelsiusString:[temperature attribute:@"max"]];
-    PFForecastConditions *forecastConditions = [PFForecastConditions conditionsWithDate:date low:low high:high summary:description imageUri:imageURI];
+    PFForecastConditions *forecastConditions = [PFForecastConditions conditionsWithDate:date low:low high:high summary:description conditionType:conditionType];
     return forecastConditions;
 }
 
-- (NSString *)getImageURLStringFromIconCode:(NSString *)weatherCode
+- (PFConditionType)getConditionTypeFromCode:(NSString *)weatherCode
 {
-//    NSString *baseURLString = @"http://openweathermap.org/img/w/";
-//    NSString *iconURLString = [[baseURLString stringByAppendingPathComponent:iconCode] stringByAppendingPathExtension:@"png"];
-//    return iconURLString;
     NSInteger codePrefix = [weatherCode integerValue] / 100;
+    NSInteger codeRemainder = [weatherCode integerValue] % 100;
+    PFConditionType conditionType;
     switch (codePrefix) {
         case 2:
-            //
-            break;
         case 3:
-            break;
         case 4:
-            break;
         case 5:
-            break;
         case 6:
+            conditionType = conditionTypeRainy;
             break;
         case 7:
+            conditionType = conditionTypeOther;
             break;
         case 8:
+            conditionType = codeRemainder == 0 ? conditionTypeSunny : conditionTypeCloudy;
             break;
         case 9:
+            conditionType = conditionTypeOther;
             break;
         default:
+            conditionType = conditionTypeOther;
             break;
     }
+    return conditionType;
 }
 
 @end

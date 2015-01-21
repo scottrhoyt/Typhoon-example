@@ -109,6 +109,7 @@
 		3B7480291A6EE9E600F18ED6 /* PFWeatherClientOWMImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWeatherClientOWMImp.m; sourceTree = "<group>"; };
 		3B74802D1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RXMLElement+PFWeatherReportOWM.h"; sourceTree = "<group>"; };
 		3B74802E1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RXMLElement+PFWeatherReportOWM.m"; sourceTree = "<group>"; };
+		3B7480301A6F331200F18ED6 /* PFConditionType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFConditionType.h; sourceTree = "<group>"; };
 		609097971E734E02BFBD9A9C /* libPods-PocketForecastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PocketForecastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2E1D9E18962CFB00BA4EE0 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6B9FABBE16FEA9D800BABD3D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -540,6 +541,7 @@
 				BA798A7EF3E53E1850551BEC /* PFWeatherReport.h */,
 				BA7987478471BA92A0518862 /* PFWeatherReport.m */,
 				BA7981E033DDC7D756CEC5DA /* Themes */,
+				3B7480301A6F331200F18ED6 /* PFConditionType.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";

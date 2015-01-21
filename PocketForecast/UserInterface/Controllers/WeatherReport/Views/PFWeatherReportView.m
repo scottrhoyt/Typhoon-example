@@ -71,7 +71,7 @@
         [_cityNameLabel setText:[_weatherReport cityDisplayName]];
         [_temperatureLabel setText:[_weatherReport.currentConditions.temperature asShortStringInDefaultUnits]];
         [_conditionsDescriptionLabel setText:[_weatherReport.currentConditions longSummary]];
-        [_conditionsIcon setImage:[self uiImageForImageUri:weatherReport.currentConditions.imageUri]];
+        [_conditionsIcon setImage:[self uiImageForConditionType:weatherReport.currentConditions.conditionType]];
         [_lastUpdateLabel setText:[NSString stringWithFormat:@"Updated %@", [weatherReport reportDateAsString]]];
     }
 }
@@ -140,7 +140,7 @@
     [cell.descriptionLabel setText:forecastConditions.summary];
     [cell.lowTempLabel setText:[forecastConditions.low asShortStringInDefaultUnits]];
     [cell.highTempLabel setText:[forecastConditions.high asShortStringInDefaultUnits]];
-    [cell.conditionsIcon setImage:[self uiImageForImageUri:forecastConditions.imageUri]];
+    [cell.conditionsIcon setImage:[self uiImageForConditionType:forecastConditions.conditionType]];
 
     [cell.backgroundView setBackgroundColor:[self colorForRow:indexPath.row]];
     return cell;
@@ -274,43 +274,27 @@
     }
 }
 
-- (UIImage *)uiImageForImageUri:(NSString *)imageUri
+- (UIImage *)uiImageForConditionType:(PFConditionType)conditionType
 {
-
-    if ([imageUri length] > 0)
-    {
-        LogDebug(@"Retrieving image for URI: %@", imageUri);
-        if ([imageUri hasSuffix:@"sunny.png"])
-        {
-            return [UIImage imageNamed:@"icon_sunny"];
-        }
-        else if ([imageUri hasSuffix:@"sunny_intervals.png"])
-        {
-            return [UIImage imageNamed:@"icon_cloudy"];
-        }
-        else if ([imageUri hasSuffix:@"partly_cloudy.png"])
-        {
-            return [UIImage imageNamed:@"icon_cloudy"];
-        }
-        else if ([imageUri hasSuffix:@"low_cloud.png"])
-        {
-            return [UIImage imageNamed:@"icon_cloudy"];
-        }
-        else if ([imageUri hasSuffix:@"light_rain_showers.png"])
-        {
-            return [UIImage imageNamed:@"icon_rainy"];
-        }
-        else if ([imageUri hasSuffix:@"heavy_rain_showers.png"])
-        {
-            return [UIImage imageNamed:@"icon_rainy"];
-        }
-        else
-        {
-            LogDebug(@"*** No icon for %@ . . rerturning sunny ***", imageUri);
-            return [UIImage imageNamed:@"icon_sunny"];
-        }
+    UIImage *conditionImage;
+    
+    switch (conditionType) {
+        case conditionTypeSunny:
+            conditionImage = [UIImage imageNamed:@"icon_sunny"];
+            break;
+        case conditionTypeCloudy:
+            conditionImage = [UIImage imageNamed:@"icon_cloudy"];
+            break;
+        case conditionTypeRainy:
+            conditionImage = [UIImage imageNamed:@"icon_rainy"];
+            break;
+        default:
+            LogDebug(@"*** No icon for condition type:%i . . rerturning sunny ***", conditionType);
+            conditionImage = [UIImage imageNamed:@"icon_sunny"];
+            break;
     }
-    return nil;
+
+    return conditionImage;
 }
 
 

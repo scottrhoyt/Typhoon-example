@@ -20,16 +20,16 @@
 
 /* =========================================================== Class Methods ============================================================ */
 + (PFForecastConditions*)conditionsWithDate:(NSDate*)date low:(PFTemperature*)low
-        high:(PFTemperature*)high summary:(NSString*)summary imageUri:(NSString*)imageUri
+        high:(PFTemperature*)high summary:(NSString*)summary conditionType:(PFConditionType)conditionType
 {
 
-    return [[PFForecastConditions alloc] initWithDate:date low:low high:high summary:summary imageUri:imageUri];
+    return [[PFForecastConditions alloc] initWithDate:date low:low high:high summary:summary conditionType:conditionType];
 }
 
 
 /* ============================================================ Initializers ============================================================ */
 - (id)initWithDate:(NSDate*)date low:(PFTemperature*)low high:(PFTemperature*)high
-        summary:(NSString*)summary imageUri:(NSString*)imageUri
+        summary:(NSString*)summary conditionType:(PFConditionType)conditionType
 {
 
     self = [super init];
@@ -39,7 +39,7 @@
         _low = low;
         _high = high;
         _summary = summary;
-        _imageUri = imageUri;
+        _conditionType = conditionType;
     }
     return self;
 }
@@ -53,7 +53,7 @@
         _low = [coder decodeObjectForKey:@"_low"];
         _high = [coder decodeObjectForKey:@"_high"];
         _summary = [coder decodeObjectForKey:@"_summary"];
-        _imageUri = [coder decodeObjectForKey:@"_imageUri"];
+        _conditionType = [coder decodeIntForKey:@"_conditionType"];
     }
     return self;
 }
@@ -80,7 +80,7 @@
     [coder encodeObject:_low forKey:@"_low"];
     [coder encodeObject:_high forKey:@"_high"];
     [coder encodeObject:_summary forKey:@"_summary"];
-    [coder encodeObject:_imageUri forKey:@"_imageUri"];
+    [coder encodeInteger:_conditionType forKey:@"_conditionType"];
 }
 
 @end

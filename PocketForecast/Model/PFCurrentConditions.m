@@ -20,27 +20,27 @@
 @synthesize temperature = _temperature;
 @synthesize humidity = _humidity;
 @synthesize wind = _wind;
-@synthesize imageUri = _imageUri;
+@synthesize conditionType = _conditionType;
 
 /* ================================================= Class Methods ================================================== */
 + (PFCurrentConditions*) conditionsWithSummary:(NSString*)summary temperature:(PFTemperature*)temperature
-        humidity:(NSString*)humidity wind:(NSString*)wind imageUrl:(NSString*)imageUrl {
+        humidity:(NSString*)humidity wind:(NSString*)wind conditionType:(PFConditionType)conditionType {
 
     return [[PFCurrentConditions alloc]
-            initWithSummary:summary temperature:temperature humidity:humidity wind:wind imageUri:imageUrl];
+            initWithSummary:summary temperature:temperature humidity:humidity wind:wind conditionType:conditionType];
 }
 
 
 /* ================================================== Initializers ================================================== */
 - (id) initWithSummary:(NSString*)summary temperature:(PFTemperature*)temperature humidity:(NSString*)humidity
-        wind:(NSString*)wind imageUri:(NSString*)imageUri {
+        wind:(NSString*)wind conditionType:(PFConditionType)conditionType {
     self = [super init];
     if (self) {
         _summary = [summary copy];
         _temperature = temperature;
         _humidity = [humidity copy];
         _wind = [wind copy];
-        _imageUri = [imageUri copy];
+        _conditionType = conditionType;
     }
     return self;
 }
@@ -52,7 +52,7 @@
         _temperature = [coder decodeObjectForKey:@"_temperature"];
         _humidity = [coder decodeObjectForKey:@"_humidity"];
         _wind = [coder decodeObjectForKey:@"_wind"];
-        _imageUri = [coder decodeObjectForKey:@"_imageUri"];
+        _conditionType = [coder decodeIntForKey:@"_conditionType"];
     }
     return  self;
 }
@@ -73,7 +73,7 @@
     [coder encodeObject:_temperature forKey:@"_temperature"];
     [coder encodeObject:_humidity forKey:@"_humidity"];
     [coder encodeObject:_wind forKey:@"_wind"];
-    [coder encodeObject:_imageUri forKey:@"_imageUri"];
+    [coder encodeInteger:_conditionType forKey:@"_conditionType"];
 }
 
 

@@ -11,19 +11,20 @@
 
 
 #import "PFCoreComponents.h"
-#import "PFWeatherClientBasicImpl.h"
+//#import "PFWeatherClientBasicImpl.h"
 #import "PFWeatherReportDaoFileSystemImpl.h"
 #import "PFCityDaoUserDefaultsImpl.h"
 #import "TyphoonConfigPostProcessor.h"
+#import "PFWeatherClientOWMImp.h"
 
 @implementation PFCoreComponents
 
 - (id <PFWeatherClient>)weatherClient
 {
-    return [TyphoonDefinition withClass:[PFWeatherClientBasicImpl class] configuration:^(TyphoonDefinition *definition)
+    return [TyphoonDefinition withClass:[PFWeatherClientOWMImp class] configuration:^(TyphoonDefinition *definition)
     {
         [definition injectProperty:@selector(serviceUrl) with:TyphoonConfig(@"service.url")];
-        [definition injectProperty:@selector(apiKey) with:TyphoonConfig(@"api.key")];
+        //[definition injectProperty:@selector(apiKey) with:TyphoonConfig(@"api.key")];
         [definition injectProperty:@selector(daysToRetrieve) with:TyphoonConfig(@"days.to.retrieve")];
         [definition injectProperty:@selector(weatherReportDao) with:[self weatherReportDao]];
     }];
