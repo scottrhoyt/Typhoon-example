@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>service.url</key>
-	<string>NSURL(http://api.worldweatheronline.com/free/v2/weather.ashx)</string>
+	<string>NSURL(http://api.openweathermap.org/data/2.5)</string>
 	<key>api.key</key>
-	<string>$$YOUR_API_KEY_HERE$$</string>
+	<string>e8eecc3ec723d5a471569a55e2e75</string>
 	<key>days.to.retrieve</key>
 	<string>5</string>
 </dict>
