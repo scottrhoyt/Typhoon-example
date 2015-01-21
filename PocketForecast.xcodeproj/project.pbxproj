@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0FC7EBF913C643679D215992 /* libPods-PocketForecast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2943E8EFE24EB5B86A64F3 /* libPods-PocketForecast.a */; };
+		3B74802A1A6EE9E600F18ED6 /* PFWeatherClientOWMImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7480291A6EE9E600F18ED6 /* PFWeatherClientOWMImp.m */; };
+		3B74802F1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B74802E1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.m */; };
 		6B2E1D9F18962CFB00BA4EE0 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2E1D9E18962CFB00BA4EE0 /* libxml2.dylib */; };
 		6B2E1DA018962D0100BA4EE0 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2E1D9E18962CFB00BA4EE0 /* libxml2.dylib */; };
 		6B9FABC016FEA9D800BABD3D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9FABBE16FEA9D800BABD3D /* Default.png */; };
@@ -103,6 +105,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B7480281A6EE9E600F18ED6 /* PFWeatherClientOWMImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWeatherClientOWMImp.h; sourceTree = "<group>"; };
+		3B7480291A6EE9E600F18ED6 /* PFWeatherClientOWMImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWeatherClientOWMImp.m; sourceTree = "<group>"; };
+		3B74802D1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RXMLElement+PFWeatherReportOWM.h"; sourceTree = "<group>"; };
+		3B74802E1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RXMLElement+PFWeatherReportOWM.m"; sourceTree = "<group>"; };
 		609097971E734E02BFBD9A9C /* libPods-PocketForecastTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PocketForecastTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2E1D9E18962CFB00BA4EE0 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6B9FABBE16FEA9D800BABD3D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -249,6 +255,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B74802B1A6EEBF100F18ED6 /* BasicImp */ = {
+			isa = PBXGroup;
+			children = (
+				BA798EF2E6B2241602FA1B9F /* RXMLElement+PFWeatherReport.h */,
+				BA798E33D2995015037E6DE5 /* RXMLElement+PFWeatherReport.m */,
+				BA7981F95ADE57DBB6722C39 /* PFWeatherClientBasicImpl.h */,
+				BA798ACA3067E7098E5C0A06 /* PFWeatherClientBasicImpl.m */,
+			);
+			name = BasicImp;
+			sourceTree = "<group>";
+		};
+		3B74802C1A6EEC0700F18ED6 /* OWMImp */ = {
+			isa = PBXGroup;
+			children = (
+				3B7480281A6EE9E600F18ED6 /* PFWeatherClientOWMImp.h */,
+				3B7480291A6EE9E600F18ED6 /* PFWeatherClientOWMImp.m */,
+				3B74802D1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.h */,
+				3B74802E1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.m */,
+			);
+			name = OWMImp;
+			sourceTree = "<group>";
+		};
 		6BD5116D1880E794009C487A /* PocketForecastTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,11 +578,9 @@
 		BA798E7C3679201AEC43BC53 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				BA798EF2E6B2241602FA1B9F /* RXMLElement+PFWeatherReport.h */,
-				BA798E33D2995015037E6DE5 /* RXMLElement+PFWeatherReport.m */,
-				BA7981F95ADE57DBB6722C39 /* PFWeatherClientBasicImpl.h */,
-				BA798ACA3067E7098E5C0A06 /* PFWeatherClientBasicImpl.m */,
 				BA798D2A742E3B6ED1BCE83D /* PFWeatherClient.h */,
+				3B74802C1A6EEC0700F18ED6 /* OWMImp */,
+				3B74802B1A6EEBF100F18ED6 /* BasicImp */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -821,10 +847,12 @@
 				BA7981088FA218ECD034170C /* PFWeatherClientBasicImpl.m in Sources */,
 				BA798CD2C01837FD3E6B9167 /* RXMLElement+PFWeatherReport.m in Sources */,
 				BA798711EE4D26A67AB61DE4 /* PFForecastConditions.m in Sources */,
+				3B74802A1A6EE9E600F18ED6 /* PFWeatherClientOWMImp.m in Sources */,
 				6BE9230A15B29E56002EF310 /* PFCityDaoUserDefaultsImpl.m in Sources */,
 				6BE9230B15B29E56002EF310 /* PFWeatherReportDaoFileSystemImpl.m in Sources */,
 				BA798B05BFE968110CD32813 /* UIFont+ApplicationFonts.m in Sources */,
 				BA7983D9D89BC9024B1FCB17 /* PFAddCityViewController.m in Sources */,
+				3B74802F1A6EF12F00F18ED6 /* RXMLElement+PFWeatherReportOWM.m in Sources */,
 				BA798AEDFC11905236E98CE3 /* PFCitiesListViewController.m in Sources */,
 				BA7981261B5929B6EA923BD4 /* PFWeatherReportViewController.m in Sources */,
 				BA7983310436F7ED629C7F11 /* PFWeatherReportView.m in Sources */,
